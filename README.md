@@ -1,1 +1,1 @@
-# Minesweeper
+# [Play Minesweeper!](
