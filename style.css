@@ -1,0 +1,42 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #f0f0f0;
+  margin: 0;
+}
+h1 {
+  margin-bottom: 10px;
+}
+#controls {
+  margin-bottom: 10px;
+}
+#board {
+  display: grid;
+  gap: 2px;
+  user-select: none;
+}
+.cell {
+  width: 30px;
+  height: 30px;
+  background: #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+.cell.revealed {
+  background: #e0e0e0;
+  cursor: default;
+}
+.cell.flagged {
+  background: #f99;
+}
+#message {
+  margin-top: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
