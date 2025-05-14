@@ -117,7 +117,7 @@ function endGame(win) {
       el.classList.add('revealed');
     }
   });
-  messageEl.textContent = win ? '승리했습니다!' : '패배했습니다!';
+  messageEl.textContent = win ? '성공!' : '실패!';
 }
 
 function checkWin() {
