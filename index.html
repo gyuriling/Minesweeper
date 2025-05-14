@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>지뢰찾기 게임</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>지뢰찾기</h1>
+  <div id="controls">
+    폭탄 개수:
+    <input id="mines-count" type="number" value="10" min="1" max="99">
+    가로:
+    <input id="cols" type="number" value="10" min="5" max="30">
+    세로:
+    <input id="rows" type="number" value="10" min="5" max="30">
+    <button id="start-btn">시작</button>
+  </div>
+  <div id="board"></div>
+  <div id="message"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
