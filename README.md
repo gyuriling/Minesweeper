@@ -1,1 +1,1 @@
-# [Play Minesweeper!](
+# [Play Minesweeper!](https://gyuriling.github.io/Minesweeper/)
