@@ -1,17 +1,28 @@
-const boardEl    = document.getElementById('board');
-const messageEl  = document.getElementById('message');
-const startBtn   = document.getElementById('start-btn');
+const boardEl     = document.getElementById('board');
+const messageEl   = document.getElementById('message');
+const startBtn    = document.getElementById('start-btn');
+const flagInfoEl  = document.getElementById('flag-info');   // 새로 추가
+const flagCountEl = document.getElementById('flag-count');
+const flagMaxEl   = document.getElementById('flag-max');
 
 let cols, rows, mines, board, gameOver;
+let flagCount;  // 현재 꽂은 깃발 수
 
 startBtn.addEventListener('click', init);
 
 function init() {
-  cols   = +document.getElementById('cols').value;
-  rows   = +document.getElementById('rows').value;
-  mines  = +document.getElementById('mines-count').value;
+  // ① 게임 시작 시점에 깃발 정보 영역 보이기
+  flagInfoEl.style.display = 'block';
+
+  cols     = +document.getElementById('cols').value;
+  rows     = +document.getElementById('rows').value;
+  mines    = +document.getElementById('mines-count').value;
   gameOver = false;
-  messageEl.textContent = '';
+  flagCount = 0;
+
+  messageEl.textContent   = '';
+  flagCountEl.textContent = flagCount;
+  flagMaxEl.textContent   = mines;
 
   boardEl.style.gridTemplateColumns = `repeat(${cols}, 30px)`;
   boardEl.innerHTML = '';
@@ -26,7 +37,7 @@ function init() {
       cell.className = 'cell';
       cell.dataset.x = x;
       cell.dataset.y = y;
-      cell.addEventListener('click',  onReveal);
+      cell.addEventListener('click', onReveal);
       cell.addEventListener('contextmenu', onFlag);
       boardEl.appendChild(cell);
     }
@@ -76,9 +87,12 @@ function onFlag(e) {
   const y = +e.target.dataset.y;
   const obj = board[y][x];
   if (!obj.revealed) {
+    // 깃발 토글: 꽂으면 +1, 제거하면 –1
     obj.flagged = !obj.flagged;
+    flagCount += obj.flagged ? 1 : -1;
     e.target.classList.toggle('flagged');
     e.target.textContent = obj.flagged ? '🚩' : '';
+    flagCountEl.textContent = flagCount;
   }
   checkWin();
 }
@@ -109,7 +123,6 @@ function revealCell(x, y) {
 
 function endGame(win) {
   gameOver = true;
-  // 모든 지뢰 공개
   boardEl.querySelectorAll('.cell').forEach(el => {
     const x = +el.dataset.x, y = +el.dataset.y;
     if (board[y][x].mine && !board[y][x].flagged) {
