@@ -13,6 +13,10 @@ h1 {
 #controls {
   margin-bottom: 10px;
 }
+#flag-info {
+  margin-bottom: 10px;
+  font-size: 1em;
+}
 #board {
   display: grid;
   gap: 2px;
